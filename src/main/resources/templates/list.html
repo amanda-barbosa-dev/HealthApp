@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,45 +11,51 @@
 
   <title>Listagem de tarefa</title>
 </head>
-<body>
+<header>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/create">Cadastro</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/create">Adicionar Lembrete</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/list">Listagem</a>
           </li>
-          
         </ul>
-       
       </div>
     </div>
   </nav>
+</header>
+<body>
   <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Nome da tarefa</th>
-        <th scope="col">Data de execução</th>
+        <th scope="col">Nome do medicamento</th>
+        <th scope="col">Data do lembrete</th>
+        <th scope="col">Horário do lembrete</th>
         <th scope="col">#</th>
       </tr>
     </thead>
     <tbody>
-      <tr data-th-each="task : ${tasks}">
-        <td data-th-text="${task.id}"></td>
-        <td data-th-text="${task.name}"></td>
-        <td data-th-text="${{task.date}}"></td>
+      <tr data-th-each="reminder : ${reminders}">
+        <td data-th-text="${reminder.id}"></td>
+        <td data-th-text="${reminder.medicationName}"></td>
+        <td data-th-text="${reminder.date}"></td>
+        <td data-th-text="${reminder.time}"></td>
         <td>
-          <a th:href="@{'/edit/'+${task.id}}" >Editar</a>
+          <a th:href="${pdfLink}">Download da Bula <img src="../static/images/editar.png"/></a>
+          <a th:href="@{'/edit/'+${reminder.id}}">Editar <img src="../static/images/editar.png"/></a>
+          <a th:href="@{'/delete/'+${reminder.id}}" onclick="return confirm('Tem certeza que deseja remover este item?');">Remover<img src="../static/images/excluir.png"/></a>
         </td>
       </tr>
-     
+
     </tbody>
   </table>
-
+  <button class="btn btn-primary" onclick="location.href='/create'">Adicionar Novo Lembrete</button>
 </body>
 </html>

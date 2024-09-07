@@ -1,13 +1,13 @@
-package br.com.dani.layout;
+package br.com.ead.senac.healthapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LayoutApplication {
+public class HealthAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LayoutApplication.class, args);
+		SpringApplication.run(HealthAppApplication.class, args);
 	}
 
 }

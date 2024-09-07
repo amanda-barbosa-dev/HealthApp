@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pesquisa de Bula</title>
+</head>
+<body>
+<form th:action="@{/pesquisarBula}" th:object="${bulaForm}" method="post">
+    <label >Nome do Medicamento:
+    <input type="text" th:field="*{medicamentoName}" id="MmedicamentoName" required>
+    </label>
+    <button type="submit">Pesquisar</button>
+</form>
+</body>
+</html>

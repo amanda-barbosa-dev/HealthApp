@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,42 +9,48 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-  <title>Cadastro de tarefa</title>
+  <title>Health App - Reminder</title>
 </head>
-<body>
+<header>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/create">Cadastro</a>
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/list">Listagem</a>
+            <a class="nav-link active" aria-current="page" href="/create">Adicionar Lembrete</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="/list">Lista de Lembretes</a>
+          </li>
         </ul>
-       
       </div>
     </div>
   </nav>
-
-
-
-  <form method="POST" action="/create" th:object="${task}">
-    <input type="hidden" th:value="${task.id}" name="id" />
+</header>
+<body>
+  <form method="POST" action="/create" th:object="${reminder}">
+    <input type="hidden" th:value="${reminder.id}" name="id" />
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Nome da tarefa</label>
-      <input type="text" class="form-control" name="name" th:value="${task.name}">
-     
+      <label class="form-label">Nome do medicamento
+      <input type="text" class="form-control" name="medicationName" th:value="${reminder.medicationName}">
+      </label>
     </div>
     <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Data de execução</label>
-      <input type="text" class="form-control" name="date" th:value="${{task.date}}">
+      <label class="form-label">Data do lembrete
+      <input type="text" class="form-control" name="date" th:value="${reminder.date}">
+      </label>
     </div>
-   
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <div class="mb-3">
+      <label class="form-label">Horário do lembrete
+      <input type="text" class="form-control" name="time" th:value="${reminder.time}">
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+
   </form>
 </body>
 </html>
