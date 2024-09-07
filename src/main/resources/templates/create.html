@@ -12,6 +12,10 @@
   <title>Health App - Reminder</title>
 </head>
 <header>
+  <a class="navbar-brand" href="#">
+    <img th:src="@{/images/healthapp.jpg}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+    HEALTH APP
+  </a>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,22 +39,20 @@
     <input type="hidden" th:value="${reminder.id}" name="id" />
     <div class="mb-3">
       <label class="form-label">Nome do medicamento
-      <input type="text" class="form-control" name="medicationName" th:value="${reminder.medicationName}">
+      <input type="text" class="form-control" name="medicationName" th:value="${reminder.medicationName}" required>
       </label>
     </div>
     <div class="mb-3">
       <label class="form-label">Data do lembrete
-      <input type="text" class="form-control" name="date" th:value="${reminder.date}">
+      <input type="date" class="form-control" name="date" th:value="${{reminder.date}}" required>
       </label>
     </div>
     <div class="mb-3">
       <label class="form-label">Horário do lembrete
-      <input type="text" class="form-control" name="time" th:value="${reminder.time}">
+      <input type="time" class="form-control" name="time" th:value="${{reminder.time}}" required>
       </label>
     </div>
-
     <button type="submit" class="btn btn-primary">Adicionar</button>
-
   </form>
 </body>
 </html>

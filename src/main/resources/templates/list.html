@@ -12,6 +12,10 @@
   <title>Listagem de tarefa</title>
 </head>
 <header>
+  <a class="navbar-brand" href="#">
+    <img th:src="@{/images/healthapp.jpg}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+    HEALTH APP
+  </a>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="/create">Adicionar Lembrete</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/list">Listagem</a>
+            <a class="nav-link" href="/list">Lista de lembretes</a>
           </li>
         </ul>
       </div>
@@ -38,7 +42,9 @@
         <th scope="col">Nome do medicamento</th>
         <th scope="col">Data do lembrete</th>
         <th scope="col">Horário do lembrete</th>
-        <th scope="col">#</th>
+        <th scope="col">Bula</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Remover</th>
       </tr>
     </thead>
     <tbody>
@@ -48,12 +54,15 @@
         <td data-th-text="${reminder.date}"></td>
         <td data-th-text="${reminder.time}"></td>
         <td>
-          <a th:href="${pdfLink}">Download da Bula <img src="../static/images/editar.png"/></a>
-          <a th:href="@{'/edit/'+${reminder.id}}">Editar <img src="../static/images/editar.png"/></a>
-          <a th:href="@{'/delete/'+${reminder.id}}" onclick="return confirm('Tem certeza que deseja remover este item?');">Remover<img src="../static/images/excluir.png"/></a>
+          <a th:href="${pdfLink}"><img alt="bula" th:src="@{/images/prescricao-medica.jpg}" height="30px" width="30px"></a>
+        </td>
+        <td>
+          <a th:href="@{'/edit/'+${reminder.id}}"><img alt="editar" th:src="@{/images/editar.jpg}" height="25px" width="25px"></a>
+        </td>
+        <td>
+          <a th:href="@{'/delete/'+${reminder.id}}" onclick="return confirm('Tem certeza que deseja remover este item?');"><img alt="remover" th:src="@{/images/excluir.jpg}" height="25px" width="25px"></a>
         </td>
       </tr>
-
     </tbody>
   </table>
   <button class="btn btn-primary" onclick="location.href='/create'">Adicionar Novo Lembrete</button>

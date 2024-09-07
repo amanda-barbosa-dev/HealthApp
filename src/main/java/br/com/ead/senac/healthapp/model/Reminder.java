@@ -1,5 +1,7 @@
 package br.com.ead.senac.healthapp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Reminder {
 
   private Long id;
@@ -7,7 +9,10 @@ public class Reminder {
 
   private String date;
 
+
   private String time;
+
+
 
   public Reminder() {
   }
@@ -34,6 +39,21 @@ public class Reminder {
     return time;
   }
 
+  public void setMedicationName(String medicationName) {
+    this.medicationName = medicationName;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 }
 
 
