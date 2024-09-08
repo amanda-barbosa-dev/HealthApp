@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.ead.senac.healthapp.model.Reminder;
+import br.com.ead.senac.healthapp.model.bularioapi.BulaForm;
+import br.com.ead.senac.healthapp.service.ClassService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReminderController {
+
+  @Autowired
+  private ClassService service;
+
 
   List<Reminder> reminders = new ArrayList<>();
 
@@ -54,10 +61,25 @@ public class ReminderController {
     return mv;
   }
 
+  // REVER IMPLANTAÇÃO ERRO --> Method 'GET' is not supported.
+  //org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
+  @PostMapping("/searchBulaByName/{medicationName}")
+  public ModelAndView processarPesquisaItemLista(@PathVariable("medicationName") String medicationName) {
+    byte[] pdf = service.getBula(medicationName);
+    System.out.println("PDF ENCONTRADO");
+    ModelAndView mv = new ModelAndView("resultBula");
+    /*mv.addObject("pdfData", Base64.getEncoder().encodeToString(pdf));*/
+    mv.addObject("pdf", pdf);
+    System.out.println("PDF ENCODER");
+    return mv;
+  }
+
   @GetMapping("/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
     Reminder reminderFind = reminders.stream().filter(task -> id.equals(task.getId())).findFirst().get();
     reminders.remove(reminderFind);
     return "redirect:/list";
   }
+
+
 }
