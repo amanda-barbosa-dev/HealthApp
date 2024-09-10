@@ -29,10 +29,11 @@ public class BulaController {
     @PostMapping("/searchBula")
     public ModelAndView processarPesquisa(@ModelAttribute BulaForm bulaForm) {
         String medName = bulaForm.getMedicationName();
-        byte[] pdf = service.getBula(medName);
+        String labName = bulaForm.getLabName();
+        System.out.println(labName);
+        byte[] pdf = service.getBula(medName, labName);
         System.out.println("PDF ENCONTRADO");
         ModelAndView mv = new ModelAndView("resultBula");
-        /*mv.addObject("pdfData", Base64.getEncoder().encodeToString(pdf));*/
         mv.addObject("pdf", pdf);
         System.out.println("PDF ENCODER");
         return mv;

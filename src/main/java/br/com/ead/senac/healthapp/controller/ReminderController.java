@@ -61,19 +61,6 @@ public class ReminderController {
     return mv;
   }
 
-  // REVER IMPLANTAÇÃO ERRO --> Method 'GET' is not supported.
-  //org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
-  @PostMapping("/searchBulaByName/{medicationName}")
-  public ModelAndView processarPesquisaItemLista(@PathVariable("medicationName") String medicationName) {
-    byte[] pdf = service.getBula(medicationName);
-    System.out.println("PDF ENCONTRADO");
-    ModelAndView mv = new ModelAndView("resultBula");
-    /*mv.addObject("pdfData", Base64.getEncoder().encodeToString(pdf));*/
-    mv.addObject("pdf", pdf);
-    System.out.println("PDF ENCODER");
-    return mv;
-  }
-
   @GetMapping("/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
     Reminder reminderFind = reminders.stream().filter(task -> id.equals(task.getId())).findFirst().get();

@@ -4,7 +4,7 @@ package br.com.ead.senac.healthapp.model.bularioapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+// Classe que define o métodos que chamarão a interface da API Bulário
 @Component
 public  class BularioFeignClientIntegrator {
     @Autowired

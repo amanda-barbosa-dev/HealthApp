@@ -30,26 +30,6 @@
         </div>
     </nav>
 </header>
-<!--<div id="pdf-viewer"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-<script>
-    // Carrega o PDF
-    pdfjsLib.getDocument(
-        'data:application/pdf;base64,' + encodeURIComponent(pdfData)
-    ).promise.then(function(pdf) {
-        // Renderiza o PDF
-        pdf.getPage(1).then(function(page) {
-            var canvas = document.getElementById('pdf-viewer');
-            var context = canvas.getContext('2d');
-            var viewport = page.getViewport({ scale: 1.5 });
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
-                // PDF renderizado com sucesso
-            });
-        });
-    });
-</script>-->
 <body>
 <div th:if="${pdf != null}">
     <h5>Bula do Medicamento</h5>
